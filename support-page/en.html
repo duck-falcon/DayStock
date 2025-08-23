@@ -69,6 +69,25 @@
             width: 20px;
             margin-right: 10px;
         }
+        .language-switcher {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #e5e5e7;
+        }
+        .language-switcher a {
+            color: #007AFF;
+            text-decoration: none;
+            margin: 0 10px;
+            font-size: 14px;
+        }
+        .language-switcher a:hover {
+            text-decoration: underline;
+        }
+        .language-switcher .current {
+            color: #86868b;
+            text-decoration: none;
+        }
     </style>
 </head>
 <body>
@@ -206,6 +225,11 @@
         <p style="text-align: center; margin-top: 40px; color: #86868b; font-size: 14px;">
             DayStock - Inventory Management by Days Remaining<br>
         </p>
+
+        <div class="language-switcher">
+            <a href="index.html">日本語</a>
+            <span class="current">English</span>
+        </div>
     </div>
 </body>
 </html>
