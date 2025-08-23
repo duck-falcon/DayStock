@@ -18,27 +18,27 @@ struct ItemRowView: View {
                 HStack {
                     if showMode == .days {
                         if let days = formattedDays {
-                            Text("あと\(days)日分")
+                            Text("main.days.prefix".localized + "\(days)" + "main.days.suffix".localized)
                                 .font(.title2)
                                 .fontWeight(.semibold)
                         } else {
-                            Text("消費なし")
+                            Text("main.noConsumption".localized)
                                 .font(.title2)
                                 .foregroundColor(.gray)
                         }
                     } else {
-                        Text("在庫\(formatDecimal(item.stock))")
+                        Text("main.stock.prefix".localized + formatDecimal(item.stock))
                             .font(.title2)
                             .fontWeight(.semibold)
                     }
                 }
                 
                 HStack(spacing: 12) {
-                    Text("消費/日: \(formatDecimal(item.daily))")
+                    Text("main.consumptionPerDay".localized + formatDecimal(item.daily))
                         .font(.caption)
                         .foregroundColor(.secondary)
                     
-                    Text("補充量: \(formatDecimal(item.defaultRefill))")
+                    Text("main.refillAmount".localized + formatDecimal(item.defaultRefill))
                         .font(.caption)
                         .foregroundColor(.secondary)
                 }
@@ -65,7 +65,7 @@ struct ItemRowView: View {
             }
             
             Button(action: onRefill) {
-                Text("補充")
+                Text("main.refillButton".localized)
                     .font(.callout)
                     .fontWeight(.medium)
                     .foregroundColor(.white)

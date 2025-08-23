@@ -1,20 +1,36 @@
 import Foundation
 
 enum RoundingMode: String, Codable, CaseIterable {
-    case floor = "切り捨て"
-    case ceil = "切り上げ"
-    case round = "四捨五入"
-    case raw = "そのまま"
+    case floor
+    case ceil
+    case round
+    case raw
+    
+    var displayName: String {
+        switch self {
+        case .floor: return "settings.roundingMode.floor".localized
+        case .ceil: return "settings.roundingMode.ceil".localized
+        case .round: return "settings.roundingMode.round".localized
+        case .raw: return "settings.roundingMode.raw".localized
+        }
+    }
 }
 
 enum ShowMode: String, Codable {
-    case days = "日数"
-    case stock = "在庫"
+    case days
+    case stock
 }
 
 enum DisplayStyle: String, Codable, CaseIterable {
-    case simple = "シンプル"
-    case detailed = "詳細"
+    case simple
+    case detailed
+    
+    var displayName: String {
+        switch self {
+        case .simple: return "settings.displayStyle.simple".localized
+        case .detailed: return "settings.displayStyle.detailed".localized
+        }
+    }
 }
 
 enum WarningLevel {

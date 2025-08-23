@@ -1,0 +1,83 @@
+/* 
+  Localizable.strings (Japanese)
+  DayStock
+*/
+
+// MARK: - App Name
+"app.name" = "DayStock";
+
+// MARK: - Main Screen
+"main.title" = "DayStock";
+"main.refillAll" = "全補充";
+"main.empty.message" = "アイテムを追加してください";
+"main.empty.addButton" = "アイテムを追加";
+"main.days.suffix" = "日分";
+"main.days.prefix" = "あと";
+"main.stock.prefix" = "在庫";
+"main.noConsumption" = "消費なし";
+"main.consumptionPerDay" = "消費/日: ";
+"main.refillAmount" = "補充量: ";
+"main.refillButton" = "補充";
+"main.confirmRefillAll.title" = "全アイテムを補充";
+"main.confirmRefillAll.message" = "全てのアイテムに既定補充量を追加します。この操作は取り消せません。";
+"main.confirmRefillAll.confirm" = "補充する";
+"main.confirmRefillAll.cancel" = "キャンセル";
+
+// MARK: - Item Edit Screen
+"edit.title.new" = "新規アイテム";
+"edit.title.edit" = "アイテム編集";
+"edit.cancel" = "キャンセル";
+"edit.save" = "保存";
+"edit.section.basic" = "基本情報";
+"edit.section.stock" = "在庫管理";
+"edit.section.preview" = "プレビュー";
+"edit.field.name" = "名前";
+"edit.field.currentStock" = "現在の在庫";
+"edit.field.dailyConsumption" = "1日あたりの消費量";
+"edit.field.defaultRefill" = "既定補充量";
+"edit.field.remainingDays" = "残り日数";
+"edit.error.title" = "エラー";
+"edit.error.nameRequired" = "名前を入力してください";
+"edit.error.invalidNumber" = "数値が正しくありません";
+
+// MARK: - Settings Screen
+"settings.title" = "設定";
+"settings.done" = "完了";
+"settings.section.display" = "表示設定";
+"settings.section.warning" = "警告設定";
+"settings.section.notification" = "通知設定";
+"settings.section.about" = "アプリ情報";
+"settings.displayStyle" = "表示スタイル";
+"settings.displayStyle.simple" = "シンプル";
+"settings.displayStyle.detailed" = "詳細";
+"settings.displayStyle.simple.footer" = "シンプル: 1行表示でスッキリ";
+"settings.displayStyle.detailed.footer" = "詳細: 詳しい情報を表示";
+"settings.roundingMode" = "丸め方法";
+"settings.roundingMode.floor" = "切り捨て";
+"settings.roundingMode.ceil" = "切り上げ";
+"settings.roundingMode.round" = "四捨五入";
+"settings.roundingMode.raw" = "そのまま";
+"settings.warning.footer" = "残り日数がこの値以下になると色が変わります";
+"settings.warning.yellow" = "黄色警告";
+"settings.warning.red" = "赤色警告";
+"settings.warning.days" = "日以下";
+"settings.notification.stockout" = "在庫切れ通知";
+"settings.notification.description" = "アプリ起動時に在庫切れアイテムを通知します";
+"settings.about.version" = "バージョン";
+"settings.about.itemCount" = "アイテム数";
+"settings.about.lastUpdate" = "最終更新";
+
+// MARK: - Display Modes
+"mode.days" = "日数";
+"mode.stock" = "在庫";
+
+// MARK: - Stockout Alert
+"stockout.alert.title" = "在庫切れ";
+"stockout.alert.single" = "『%@』の在庫が切れています";
+"stockout.alert.multiple" = "在庫切れ: %@";
+"stockout.alert.more" = "、他%d件";
+"stockout.alert.ok" = "OK";
+
+// MARK: - Actions
+"action.delete" = "削除";
+"action.refill" = "補充";

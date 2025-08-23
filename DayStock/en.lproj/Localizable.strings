@@ -1,0 +1,83 @@
+/* 
+  Localizable.strings (English)
+  DayStock
+*/
+
+// MARK: - App Name
+"app.name" = "DayStock";
+
+// MARK: - Main Screen
+"main.title" = "DayStock";
+"main.refillAll" = "Refill All";
+"main.empty.message" = "Add items to get started";
+"main.empty.addButton" = "Add Item";
+"main.days.suffix" = " days";
+"main.days.prefix" = "";
+"main.stock.prefix" = "Stock: ";
+"main.noConsumption" = "No consumption";
+"main.consumptionPerDay" = "Use/day: ";
+"main.refillAmount" = "Refill: ";
+"main.refillButton" = "Refill";
+"main.confirmRefillAll.title" = "Refill All Items";
+"main.confirmRefillAll.message" = "Add default refill amount to all items. This action cannot be undone.";
+"main.confirmRefillAll.confirm" = "Refill";
+"main.confirmRefillAll.cancel" = "Cancel";
+
+// MARK: - Item Edit Screen
+"edit.title.new" = "New Item";
+"edit.title.edit" = "Edit Item";
+"edit.cancel" = "Cancel";
+"edit.save" = "Save";
+"edit.section.basic" = "Basic Info";
+"edit.section.stock" = "Stock Management";
+"edit.section.preview" = "Preview";
+"edit.field.name" = "Name";
+"edit.field.currentStock" = "Current Stock";
+"edit.field.dailyConsumption" = "Daily Consumption";
+"edit.field.defaultRefill" = "Default Refill";
+"edit.field.remainingDays" = "Remaining Days";
+"edit.error.title" = "Error";
+"edit.error.nameRequired" = "Please enter a name";
+"edit.error.invalidNumber" = "Invalid number";
+
+// MARK: - Settings Screen
+"settings.title" = "Settings";
+"settings.done" = "Done";
+"settings.section.display" = "Display Settings";
+"settings.section.warning" = "Warning Settings";
+"settings.section.notification" = "Notifications";
+"settings.section.about" = "About";
+"settings.displayStyle" = "Display Style";
+"settings.displayStyle.simple" = "Simple";
+"settings.displayStyle.detailed" = "Detailed";
+"settings.displayStyle.simple.footer" = "Simple: Clean one-line display";
+"settings.displayStyle.detailed.footer" = "Detailed: Show all information";
+"settings.roundingMode" = "Rounding Mode";
+"settings.roundingMode.floor" = "Round Down";
+"settings.roundingMode.ceil" = "Round Up";
+"settings.roundingMode.round" = "Round";
+"settings.roundingMode.raw" = "Exact";
+"settings.warning.footer" = "Color changes when days remaining falls below these values";
+"settings.warning.yellow" = "Yellow Warning";
+"settings.warning.red" = "Red Warning";
+"settings.warning.days" = " days or less";
+"settings.notification.stockout" = "Out of Stock Alerts";
+"settings.notification.description" = "Notify when items are out of stock on app launch";
+"settings.about.version" = "Version";
+"settings.about.itemCount" = "Items";
+"settings.about.lastUpdate" = "Last Update";
+
+// MARK: - Display Modes
+"mode.days" = "Days";
+"mode.stock" = "Stock";
+
+// MARK: - Stockout Alert
+"stockout.alert.title" = "Out of Stock";
+"stockout.alert.single" = "'%@' is out of stock";
+"stockout.alert.multiple" = "Out of stock: %@";
+"stockout.alert.more" = ", and %d more";
+"stockout.alert.ok" = "OK";
+
+// MARK: - Actions
+"action.delete" = "Delete";
+"action.refill" = "Refill";

@@ -20,14 +20,14 @@ struct ItemEditView: View {
     var body: some View {
         NavigationView {
             Form {
-                Section(header: Text("基本情報")) {
-                    TextField("名前", text: $name)
+                Section(header: Text("edit.section.basic".localized)) {
+                    TextField("edit.field.name".localized, text: $name)
                         .textInputAutocapitalization(.never)
                 }
                 
-                Section(header: Text("在庫管理")) {
+                Section(header: Text("edit.section.stock".localized)) {
                     HStack {
-                        Text("現在の在庫")
+                        Text("edit.field.currentStock".localized)
                         Spacer()
                         TextField("0", text: $stockText)
                             .keyboardType(.decimalPad)
@@ -35,7 +35,7 @@ struct ItemEditView: View {
                     }
                     
                     HStack {
-                        Text("1日あたりの消費量")
+                        Text("edit.field.dailyConsumption".localized)
                         Spacer()
                         TextField("0", text: $dailyText)
                             .keyboardType(.decimalPad)
@@ -43,7 +43,7 @@ struct ItemEditView: View {
                     }
                     
                     HStack {
-                        Text("既定補充量")
+                        Text("edit.field.defaultRefill".localized)
                         Spacer()
                         TextField("0", text: $defaultRefillText)
                             .keyboardType(.decimalPad)
@@ -52,32 +52,32 @@ struct ItemEditView: View {
                 }
                 
                 if let days = calculateDaysPreview() {
-                    Section(header: Text("プレビュー")) {
+                    Section(header: Text("edit.section.preview".localized)) {
                         HStack {
-                            Text("残り日数")
+                            Text("edit.field.remainingDays".localized)
                             Spacer()
                             if let daysValue = days {
-                                Text("\(store.formatDays(daysValue))日分")
+                                Text("\(store.formatDays(daysValue))" + "main.days.suffix".localized)
                                     .foregroundColor(.secondary)
                             } else {
-                                Text("消費なし")
+                                Text("main.noConsumption".localized)
                                     .foregroundColor(.secondary)
                             }
                         }
                     }
                 }
             }
-            .navigationTitle(item == nil ? "新規アイテム" : "アイテム編集")
+            .navigationTitle(item == nil ? "edit.title.new".localized : "edit.title.edit".localized)
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
-                    Button("キャンセル") {
+                    Button("edit.cancel".localized) {
                         dismiss()
                     }
                 }
                 
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    Button("保存") {
+                    Button("edit.save".localized) {
                         saveItem()
                     }
                     .fontWeight(.semibold)
@@ -87,7 +87,7 @@ struct ItemEditView: View {
             .onAppear {
                 setupInitialValues()
             }
-            .alert("エラー", isPresented: $showingAlert) {
+            .alert("edit.error.title".localized, isPresented: $showingAlert) {
                 Button("OK", role: .cancel) { }
             } message: {
                 Text(alertMessage)
@@ -136,7 +136,7 @@ struct ItemEditView: View {
     
     private func saveItem() {
         guard !name.isEmpty else {
-            alertMessage = "名前を入力してください"
+            alertMessage = "edit.error.nameRequired".localized
             showingAlert = true
             return
         }
@@ -144,7 +144,7 @@ struct ItemEditView: View {
         guard let stock = parseDecimal(stockText),
               let daily = parseDecimal(dailyText),
               let defaultRefill = parseDecimal(defaultRefillText) else {
-            alertMessage = "数値が正しくありません"
+            alertMessage = "edit.error.invalidNumber".localized
             showingAlert = true
             return
         }

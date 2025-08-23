@@ -4,76 +4,75 @@ struct SettingsView: View {
     @ObservedObject var store: DataStore
     @Environment(\.dismiss) private var dismiss
     
-    @State private var yellowDaysText: String = ""
-    @State private var redDaysText: String = ""
-    
     var body: some View {
         NavigationView {
             Form {
-                Section(header: Text("表示設定"), footer: Text(store.settings.displayStyle == .simple ? "シンプル: 1行表示でスッキリ" : "詳細: 詳しい情報を表示")) {
-                    Picker("表示スタイル", selection: $store.settings.displayStyle) {
+                Section(header: Text("settings.section.display".localized), footer: Text(store.settings.displayStyle == .simple ? "settings.displayStyle.simple.footer".localized : "settings.displayStyle.detailed.footer".localized)) {
+                    Picker("settings.displayStyle".localized, selection: $store.settings.displayStyle) {
                         ForEach(DisplayStyle.allCases, id: \.self) { style in
-                            Text(style.rawValue).tag(style)
+                            Text(style.displayName).tag(style)
                         }
                     }
                     .pickerStyle(SegmentedPickerStyle())
                     
-                    Picker("丸め方法", selection: $store.settings.roundingMode) {
+                    Picker("settings.roundingMode".localized, selection: $store.settings.roundingMode) {
                         ForEach(RoundingMode.allCases, id: \.self) { mode in
-                            Text(mode.rawValue).tag(mode)
+                            Text(mode.displayName).tag(mode)
                         }
                     }
                     .pickerStyle(SegmentedPickerStyle())
                 }
                 
-                Section(header: Text("警告設定"), footer: Text("残り日数がこの値以下になると色が変わります")) {
+                Section(header: Text("settings.section.warning".localized), footer: Text("settings.warning.footer".localized)) {
                     HStack {
-                        Label("黄色警告", systemImage: "exclamationmark.triangle.fill")
-                            .foregroundColor(.yellow)
+                        Label("settings.warning.yellow".localized, systemImage: "exclamationmark.triangle.fill")
+                            .foregroundColor(.orange)
                         Spacer()
-                        TextField("3", text: $yellowDaysText)
-                            .keyboardType(.numberPad)
-                            .multilineTextAlignment(.trailing)
-                            .frame(width: 50)
-                        Text("日以下")
-                            .foregroundColor(.secondary)
+                        Stepper(value: $store.settings.warnYellowDays, in: 1...30, step: 1) {
+                            Text("\(formatDecimalForSettings(store.settings.warnYellowDays))" + "settings.warning.days".localized)
+                                .foregroundColor(.secondary)
+                        }
+                        .onChange(of: store.settings.warnYellowDays) { _ in
+                            store.save()
+                        }
                     }
                     
                     HStack {
-                        Label("赤色警告", systemImage: "exclamationmark.circle.fill")
+                        Label("settings.warning.red".localized, systemImage: "exclamationmark.circle.fill")
                             .foregroundColor(.red)
                         Spacer()
-                        TextField("1", text: $redDaysText)
-                            .keyboardType(.numberPad)
-                            .multilineTextAlignment(.trailing)
-                            .frame(width: 50)
-                        Text("日以下")
-                            .foregroundColor(.secondary)
+                        Stepper(value: $store.settings.warnRedDays, in: 0...10, step: 1) {
+                            Text("\(formatDecimalForSettings(store.settings.warnRedDays))" + "settings.warning.days".localized)
+                                .foregroundColor(.secondary)
+                        }
+                        .onChange(of: store.settings.warnRedDays) { _ in
+                            store.save()
+                        }
                     }
                 }
                 
-                Section(header: Text("通知設定")) {
+                Section(header: Text("settings.section.notification".localized)) {
                     Toggle(isOn: $store.settings.notificationsOn) {
-                        Label("在庫切れ通知", systemImage: "bell")
+                        Label("settings.notification.stockout".localized, systemImage: "bell")
                     }
                     
                     if store.settings.notificationsOn {
-                        Text("アプリ起動時に在庫切れアイテムを通知します")
+                        Text("settings.notification.description".localized)
                             .font(.caption)
                             .foregroundColor(.secondary)
                     }
                 }
                 
-                Section(header: Text("アプリ情報")) {
+                Section(header: Text("settings.section.about".localized)) {
                     HStack {
-                        Text("バージョン")
+                        Text("settings.about.version".localized)
                         Spacer()
                         Text("1.0.0")
                             .foregroundColor(.secondary)
                     }
                     
                     HStack {
-                        Text("アイテム数")
+                        Text("settings.about.itemCount".localized)
                         Spacer()
                         Text("\(store.appState.items.count)")
                             .foregroundColor(.secondary)
@@ -81,7 +80,7 @@ struct SettingsView: View {
                     
                     if let updatedAt = store.appState.updatedAt {
                         HStack {
-                            Text("最終更新")
+                            Text("settings.about.lastUpdate".localized)
                             Spacer()
                             Text(formatDate(updatedAt))
                                 .foregroundColor(.secondary)
@@ -89,44 +88,21 @@ struct SettingsView: View {
                     }
                 }
             }
-            .navigationTitle("設定")
+            .navigationTitle("settings.title".localized)
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    Button("完了") {
-                        saveSettings()
+                    Button("settings.done".localized) {
                         dismiss()
                     }
                 }
             }
-            .onAppear {
-                setupInitialValues()
-            }
         }
-    }
-    
-    private func setupInitialValues() {
-        yellowDaysText = formatDecimalForSettings(store.settings.warnYellowDays)
-        redDaysText = formatDecimalForSettings(store.settings.warnRedDays)
     }
     
     private func formatDecimalForSettings(_ value: Decimal) -> String {
         let number = NSDecimalNumber(decimal: value)
         return "\(Int(number.doubleValue))"
-    }
-    
-    private func saveSettings() {
-        if let yellowDays = Decimal(string: yellowDaysText),
-           yellowDays > 0 {
-            store.settings.warnYellowDays = yellowDays
-        }
-        
-        if let redDays = Decimal(string: redDaysText),
-           redDays > 0 {
-            store.settings.warnRedDays = redDays
-        }
-        
-        store.save()
     }
     
     private func formatDate(_ date: Date) -> String {

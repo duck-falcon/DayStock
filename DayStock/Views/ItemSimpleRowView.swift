@@ -34,10 +34,10 @@ struct ItemSimpleRowView: View {
             if showMode == .days {
                 if let days = formattedDays {
                     HStack(spacing: 4) {
-                        Text("あと")
+                        Text("main.days.prefix".localized)
                             .font(.system(size: 14))
                             .foregroundColor(.secondary)
-                        Text("\(days)日")
+                        Text("\(days)" + "main.days.suffix".localized)
                             .font(.system(size: 17, weight: .medium))
                             .foregroundColor(warningTextColor)
                     }

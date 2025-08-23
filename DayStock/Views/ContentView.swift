@@ -23,7 +23,7 @@ struct ContentView: View {
                     itemListView
                 }
             }
-            .navigationTitle("DayStock")
+            .navigationTitle("main.title".localized)
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
                     Button(action: { showingSettings = true }) {
@@ -34,8 +34,8 @@ struct ContentView: View {
                 ToolbarItem(placement: .principal) {
                     if !store.appState.items.isEmpty {
                         Picker("表示モード", selection: $store.settings.showMode) {
-                            Text("日数").tag(ShowMode.days)
-                            Text("在庫").tag(ShowMode.stock)
+                            Text("mode.days".localized).tag(ShowMode.days)
+                            Text("mode.stock".localized).tag(ShowMode.stock)
                         }
                         .pickerStyle(SegmentedPickerStyle())
                         .frame(width: 120)
@@ -49,7 +49,7 @@ struct ContentView: View {
                     HStack(spacing: 16) {
                         // 全補充ボタンは日数モード時のみ表示
                         if !store.appState.items.isEmpty && store.settings.showMode == .days {
-                            Button("全補充") {
+                            Button("main.refillAll".localized) {
                                 showingRefillConfirm = true
                             }
                             .font(.callout)
@@ -75,18 +75,18 @@ struct ContentView: View {
         .onAppear {
             checkStockout()
         }
-        .alert("在庫切れ", isPresented: $showStockoutAlert) {
-            Button("OK", role: .cancel) { }
+        .alert("stockout.alert.title".localized, isPresented: $showStockoutAlert) {
+            Button("stockout.alert.ok".localized, role: .cancel) { }
         } message: {
             Text(stockoutMessage)
         }
-        .confirmationDialog("全アイテムを補充", isPresented: $showingRefillConfirm, titleVisibility: .visible) {
-            Button("補充する", role: .destructive) {
+        .confirmationDialog("main.confirmRefillAll.title".localized, isPresented: $showingRefillConfirm, titleVisibility: .visible) {
+            Button("main.confirmRefillAll.confirm".localized, role: .destructive) {
                 store.refillAll()
             }
-            Button("キャンセル", role: .cancel) { }
+            Button("main.confirmRefillAll.cancel".localized, role: .cancel) { }
         } message: {
-            Text("全てのアイテムに既定補充量を追加します。この操作は取り消せません。")
+            Text("main.confirmRefillAll.message".localized)
         }
     }
     
@@ -96,12 +96,12 @@ struct ContentView: View {
                 .font(.system(size: 60))
                 .foregroundColor(.gray)
             
-            Text("アイテムを追加してください")
+            Text("main.empty.message".localized)
                 .font(.title2)
                 .foregroundColor(.secondary)
             
             Button(action: { showingAddItem = true }) {
-                Label("アイテムを追加", systemImage: "plus.circle.fill")
+                Label("main.empty.addButton".localized, systemImage: "plus.circle.fill")
                     .font(.headline)
             }
             .buttonStyle(.borderedProminent)
@@ -131,7 +131,7 @@ struct ContentView: View {
                         Button(role: .destructive) {
                             store.deleteItem(item)
                         } label: {
-                            Label("削除", systemImage: "trash")
+                            Label("action.delete".localized, systemImage: "trash")
                         }
                     }
                 } else {
@@ -168,14 +168,14 @@ struct ContentView: View {
         let stockoutItems = store.checkStockoutItems()
         if !stockoutItems.isEmpty {
             if stockoutItems.count == 1 {
-                stockoutMessage = "『\(stockoutItems[0].name)』の在庫が切れています"
+                stockoutMessage = "stockout.alert.single".localized(with: stockoutItems[0].name)
             } else {
                 let names = stockoutItems.prefix(2).map { $0.name }.joined(separator: "、")
                 let remaining = stockoutItems.count - 2
                 if remaining > 0 {
-                    stockoutMessage = "在庫切れ: \(names)、他\(remaining)件"
+                    stockoutMessage = "stockout.alert.multiple".localized(with: names) + "stockout.alert.more".localized(with: remaining)
                 } else {
-                    stockoutMessage = "在庫切れ: \(names)"
+                    stockoutMessage = "stockout.alert.multiple".localized(with: names)
                 }
             }
             showStockoutAlert = true
