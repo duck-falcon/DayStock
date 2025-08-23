@@ -15,7 +15,7 @@ struct ContentView: View {
     }
     
     var body: some View {
-        NavigationView {
+        NavigationStack {
             ZStack {
                 if store.appState.items.isEmpty {
                     emptyStateView
