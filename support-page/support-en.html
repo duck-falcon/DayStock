@@ -76,16 +76,16 @@
         <h1>DayStock Support</h1>
         
         <h2>🎯 About DayStock</h2>
-        <p>DayStock is an intuitive app designed to help you manage your household inventory effortlessly. Create shopping lists, track supplies, and make your daily life more efficient.</p>
+        <p>DayStock is an innovative app that manages inventory by "days remaining." By setting daily consumption rates, it automatically calculates "how many days of stock you have left" and automatically deducts elapsed days' worth of inventory every time you open the app.</p>
 
         <h2>✨ Key Features</h2>
         <ul class="feature-list">
-            <li><span class="icon">📦</span>Item inventory management</li>
-            <li><span class="icon">🛒</span>Shopping list functionality</li>
-            <li><span class="icon">📊</span>Category organization</li>
-            <li><span class="icon">🔔</span>Low stock alerts</li>
-            <li><span class="icon">☁️</span>iCloud sync support</li>
-            <li><span class="icon">🌙</span>Dark mode support</li>
+            <li><span class="icon">📅</span>Days-remaining inventory management</li>
+            <li><span class="icon">🔄</span>Automatic stock deduction on startup</li>
+            <li><span class="icon">📊</span>Two display modes (Days/Stock)</li>
+            <li><span class="icon">⚠️</span>Color-coded warning levels</li>
+            <li><span class="icon">🔔</span>Stock-out alerts</li>
+            <li><span class="icon">🎯</span>Bulk refill functionality</li>
         </ul>
 
         <h2>📖 How to Use</h2>
@@ -93,45 +93,80 @@
         <h3>Adding Items</h3>
         <div class="faq">
             <p>1. Tap the "+" button on the main screen</p>
-            <p>2. Enter the item name, category, and quantity</p>
-            <p>3. Set the minimum stock level if needed</p>
-            <p>4. Tap "Save" to complete</p>
+            <p>2. Enter the item name</p>
+            <p>3. Enter the current stock quantity</p>
+            <p>4. Enter daily consumption rate</p>
+            <p>5. Set default refill amount (amount you typically buy in one shopping trip)</p>
+            <p>6. Tap "Save" to complete</p>
         </div>
 
-        <h3>Updating Inventory</h3>
+        <h3>Stock Operations</h3>
         <div class="faq">
-            <p>• Swipe left or right on items to increase/decrease quantity</p>
+            <p>• "Refill" button: Adds the default refill amount to current stock</p>
+            <p>• "Refill All" button: Bulk refills all items at once</p>
+            <p>• In Stock mode: Use "+" and "-" buttons for fine adjustments</p>
             <p>• Tap an item to open the detailed edit screen</p>
-            <p>• Long press for quick action menu</p>
+            <p>• Swipe to reveal delete menu</p>
         </div>
 
-        <h3>Using Shopping Lists</h3>
+        <h3>Display Mode Switching</h3>
         <div class="faq">
-            <p>• Items below minimum stock are automatically added to shopping list</p>
-            <p>• Check needed items in the Shopping List tab</p>
-            <p>• Tap the checkmark after purchase to update inventory</p>
+            <p>• Use the segment control at the top to switch display modes</p>
+            <p>• "Days" mode: Shows "X days left" for remaining days</p>
+            <p>• "Stock" mode: Shows "Stock X" for specific quantities</p>
+            <p>• Button layout optimizes for each mode</p>
+        </div>
+        
+        <h3>Automatic Stock Deduction System</h3>
+        <div class="faq">
+            <p>• Every time you open the app, it calculates days elapsed since last use</p>
+            <p>• Elapsed days × Daily consumption = Automatically deducted from stock</p>
+            <p>• Example: Eggs with 2/day consumption, open app after 3 days → 6 eggs deducted</p>
+            <p>• This feature ensures you always have real-time stock status</p>
+        </div>
+
+        <h2>⚙️ Settings</h2>
+        
+        <h3>Display Style</h3>
+        <div class="faq">
+            <p>• Simple: Clean one-line display</p>
+            <p>• Detailed: Shows more detailed information</p>
+        </div>
+
+        <h3>Rounding Method</h3>
+        <div class="faq">
+            <p>• Floor: Round down remaining days (default)</p>
+            <p>• Ceil: Round up remaining days</p>
+            <p>• Round: Standard rounding of remaining days</p>
+            <p>• Raw: Show exact decimal (to 1 decimal place)</p>
+        </div>
+
+        <h3>Warning Settings</h3>
+        <div class="faq">
+            <p>• Yellow warning: Display in yellow when days remaining ≤ this value (default: 3 days)</p>
+            <p>• Red warning: Display in red when days remaining ≤ this value (default: 1 day)</p>
         </div>
 
         <h2>❓ Frequently Asked Questions</h2>
         
         <div class="faq">
             <h3>Q: Where is my data stored?</h3>
-            <p>A: All data is stored locally on your device. With iCloud sync enabled, you can sync data across multiple devices.</p>
+            <p>A: All data is stored locally on your device. Nothing is sent to external servers.</p>
         </div>
 
         <div class="faq">
-            <h3>Q: How do I backup my data?</h3>
-            <p>A: Enable iCloud sync for automatic backup. Go to Settings and turn on "iCloud Sync".</p>
+            <h3>Q: What happens if I set consumption to 0?</h3>
+            <p>A: With 0 consumption, no automatic deduction occurs and remaining days shows "No consumption."</p>
         </div>
 
         <div class="faq">
-            <h3>Q: Can I customize categories?</h3>
-            <p>A: Yes, you can add, edit, and delete categories from the Settings screen.</p>
+            <h3>Q: What happens when stock reaches 0?</h3>
+            <p>A: When the app launches and finds items out of stock, it will notify you (if notifications are enabled).</p>
         </div>
 
         <div class="faq">
-            <h3>Q: I'm not receiving notifications</h3>
-            <p>A: Check that notifications are enabled for DayStock in iOS Settings. Go to Settings > Notifications > DayStock.</p>
+            <h3>Q: Can I use it without worrying about timing?</h3>
+            <p>A: Yes. It calculates days based on midnight crossings, so it accurately tracks elapsed days regardless of what time you open the app.</p>
         </div>
 
         <h2>🔧 Troubleshooting</h2>
@@ -143,36 +178,33 @@
             <p>3. If the problem persists, contact support below</p>
         </div>
 
-        <h3>Sync Issues</h3>
+        <h3>Not Receiving Notifications</h3>
         <div class="faq">
-            <p>1. Check your internet connection</p>
-            <p>2. Verify you're signed into iCloud</p>
-            <p>3. Confirm iCloud sync is enabled in settings</p>
-            <p>4. Ensure you have sufficient iCloud storage space</p>
+            <p>1. Check that "Stock-out Notifications" is enabled in app settings</p>
+            <p>2. Verify notifications are enabled for DayStock in iOS Settings</p>
+            <p>3. Go to Settings > Notifications > DayStock to configure</p>
         </div>
 
         <h2>📝 Feedback</h2>
         <p>We're constantly working to improve DayStock. Your feedback and suggestions are invaluable. Please feel free to share feature requests or report bugs.</p>
 
+        <h2>Development Roadmap</h2>
+        <p>We are considering the following as premium features. If you need any of these, please let us know in your feedback to help us prioritize development.</p>
+        <div class="faq">
+            <p>• Day-of-week specific consumption rates</p>
+            <p>• Multiple screens (separate daily supplies, food items, etc.)</p>
+            <p>• iCloud sync</p>
+            <p>• Basic statistics (e.g., how many eggs consumed this year)</p>
+        </div>
+
         <div class="contact-box">
             <h2>Contact Us</h2>
             <p>For questions or support, please reach out to us</p>
-            <p><a href="mailto:support@daystock-app.com">support@daystock-app.com</a></p>
-            <p style="margin-top: 20px; font-size: 14px;">We typically respond within 24 hours</p>
-        </div>
-
-        <h2>🔄 Version History</h2>
-        <div class="faq">
-            <h3>Version 1.0.0 (August 2025)</h3>
-            <p>• Initial release</p>
-            <p>• Basic inventory management features</p>
-            <p>• iCloud sync support</p>
-            <p>• Dark mode support</p>
+            <p><a href="mailto:daystock@so-ran.com">daystock@so-ran.com</a></p>
         </div>
 
         <p style="text-align: center; margin-top: 40px; color: #86868b; font-size: 14px;">
-            DayStock - Simple and Intuitive Inventory Management<br>
-            © 2025 DayStock. All rights reserved.
+            DayStock - Inventory Management by Days Remaining<br>
         </p>
     </div>
 </body>
